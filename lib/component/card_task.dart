@@ -15,7 +15,7 @@ class CardTaskData {
 }
 
 class CardTask extends StatelessWidget {
-  CardTask({
+  const CardTask({
     required this.data,
     required this.primary,
     required this.onPrimary,
@@ -169,7 +169,9 @@ class CardTask extends StatelessWidget {
           'type': data['type'],
           'craftsman': data['craftsman'],
           'price': data['price'],
-          'id': docId,
+          'servicesId': docId,
+          'id': data['id'],
+          'craftManId': data['uid'],
           'time': DateFormat('hh:mm a').format(DateTime.now()).toString(),
           'date': DateFormat('yyyy-MM-dd').format(DateTime.now()).toString(),
         });

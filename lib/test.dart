@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:herafy_admin_web_part/pages/craftsman/craftsmanservices.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -38,6 +39,39 @@ class MemberCard extends StatelessWidget {
             ),
           ),
         ),
+        trailing: member['accept']
+            ? MaterialButton(
+                color: Colors.blueAccent,
+                onPressed: () async {
+                  await FirebaseFirestore.instance
+                      .collection('craftsman')
+                      .doc(member['id'])
+                      .set(
+                    {'accept': false},
+                    SetOptions(merge: true),
+                  );
+                },
+                child: const Text(
+                  'Restrict',
+                  style: TextStyle(color: Colors.white),
+                ),
+              )
+            : MaterialButton(
+                color: Colors.redAccent,
+                onPressed: () async {
+                  await FirebaseFirestore.instance
+                      .collection('craftsman')
+                      .doc(member['id'])
+                      .set(
+                    {'accept': true},
+                    SetOptions(merge: true),
+                  );
+                },
+                child: const Text(
+                  'UnRestrict',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
         leading: member['image'] == 'null'
             ? const CircleAvatar(
                 child: Icon(Icons.person),
@@ -53,7 +87,6 @@ class MemberCard extends StatelessWidget {
                   ),
                 ),
               ),
-        trailing: const Text(''),
         subtitle: Column(
           children: [
             Text(member['email']),

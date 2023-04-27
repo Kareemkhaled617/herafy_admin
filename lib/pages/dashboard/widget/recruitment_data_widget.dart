@@ -152,23 +152,23 @@ class _RecruitmentDataWidgetState extends State<RecruitmentDataWidget> {
           if (!AppResponsive.isMobile(context))
             InkWell(
               onTap: () {
-                QuickAlert.show(
-                  context: context,
-                  type: QuickAlertType.success,
-                  onCancelBtnTap: () {
-                    delete(uid);
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const HomePage()));
-                  },
-                  onConfirmBtnTap: () {},
-                  showCancelBtn: true,
-                  cancelBtnText: 'Delete',
-                  confirmBtnText: 'Update',
-                  customAsset: 'assets/user1.jpg',
-                  text: name,
-                );
+                // QuickAlert.show(
+                //   context: context,
+                //   type: QuickAlertType.success,
+                //   onCancelBtnTap: () {
+                //     delete(uid);
+                //     Navigator.push(
+                //         context,
+                //         MaterialPageRoute(
+                //             builder: (context) => const HomePage()));
+                //   },
+                //   onConfirmBtnTap: () {},
+                //   showCancelBtn: true,
+                //   cancelBtnText: 'Delete',
+                //   confirmBtnText: 'Update',
+                //   customAsset: 'assets/user1.jpg',
+                //   text: name,
+                // );
               },
               child: Image.asset(
                 "assets/more.png",

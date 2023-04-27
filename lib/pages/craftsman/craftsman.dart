@@ -30,11 +30,13 @@ class CraftsMan extends StatelessWidget {
                 borderRadius: BorderRadius.circular(24),
                 color: Colors.white,
               ),
-              child: FutureBuilder(
-                future: getCraftsMan(),
-                builder: (context, snapshot) {
+              child: StreamBuilder(
+                stream: FirebaseFirestore.instance
+                    .collection("craftsman")
+                    .snapshots(),
+                builder: (context, AsyncSnapshot snapshot) {
                   if (snapshot.hasData) {
-                    List craftman = snapshot.data as List;
+                    List craftman = snapshot.data!.docs as List;
                     return Container(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 25),

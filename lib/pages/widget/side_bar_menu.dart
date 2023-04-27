@@ -1,10 +1,10 @@
-
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 import '../../common/app_colors.dart';
 import '../add_category/category.dart';
 import '../add_category/listofcategory.dart';
+import '../clients/clients.dart';
 import '../craftsman/craftsman.dart';
 import '../home_page.dart';
 
@@ -72,6 +72,18 @@ class _SideBarState extends State<SideBar> {
                     context,
                     MaterialPageRoute(
                         builder: (context) => const CraftsMan(
+                              deviceScreenType: DeviceScreenType.desktop,
+                            )));
+              },
+            ),
+            DrawerListTile(
+              title: "Clients",
+              icon: "assets/menu_recruitment.png",
+              press: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const Clients(
                               deviceScreenType: DeviceScreenType.desktop,
                             )));
               },

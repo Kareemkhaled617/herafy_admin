@@ -43,8 +43,6 @@ void addCenterData({
   });
 }
 
-
-
 Future login1(String email, pass, {context}) async {
   print(email);
   print(pass);
@@ -53,8 +51,8 @@ Future login1(String email, pass, {context}) async {
       UserCredential userCredential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: pass);
       // print(userCredential);
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const HomePage()));
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const HomePage()));
       return userCredential;
     } else {
       print('isEmpty');

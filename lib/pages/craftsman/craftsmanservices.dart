@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-import '../../test.dart';
 import '../widget/side_bar_menu.dart';
 
 class CraftsManServices extends StatelessWidget {
@@ -69,11 +68,12 @@ class CraftsManServices extends StatelessWidget {
                                       children: List.generate(
                                         craftmanServices.length,
                                         (index) => Container(
-                                          margin: const EdgeInsets.only(bottom: 20),
+                                          margin:
+                                              const EdgeInsets.only(bottom: 20),
                                           child: ListTile(
-
                                             title: Padding(
-                                              padding: const EdgeInsets.only(bottom: 8),
+                                              padding: const EdgeInsets.only(
+                                                  bottom: 8),
                                               child: Text(
                                                 craftmanServices[index]['name'],
                                                 style: const TextStyle(
@@ -81,29 +81,135 @@ class CraftsManServices extends StatelessWidget {
                                                 ),
                                               ),
                                             ),
-                                            leading: craftmanServices[index]['image'] == 'null'
+                                            leading: craftmanServices[index]
+                                                        ['image'] ==
+                                                    'null'
                                                 ? const CircleAvatar(
-                                              child: Icon(Icons.person),
-                                            )
+                                                    child: Icon(Icons.person),
+                                                  )
                                                 : Container(
-                                              height: 50,
-                                              width: 50,
-                                              decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.circular(10),
-                                                image: DecorationImage(
-                                                  fit: BoxFit.cover,
-                                                  image: NetworkImage(craftmanServices[index]['image']),
-                                                ),
+                                                    height: 50,
+                                                    width: 50,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      image: DecorationImage(
+                                                        fit: BoxFit.cover,
+                                                        image: NetworkImage(
+                                                            craftmanServices[
+                                                                    index]
+                                                                ['image']),
+                                                      ),
+                                                    ),
+                                                  ),
+                                            trailing: MaterialButton(
+                                              color: Colors.blueAccent,
+                                              onPressed: () async {
+                                                showDialog(
+                                                  context: context,
+                                                  builder:
+                                                      (BuildContext context) {
+                                                    return AlertDialog(
+                                                      title: const Text(
+                                                          "Herafy!!"),
+                                                      content: StreamBuilder(
+                                                        stream: FirebaseFirestore
+                                                            .instance
+                                                            .collection(
+                                                                'allService')
+                                                            .doc(
+                                                                craftmanServices[
+                                                                        index]
+                                                                    ['id'])
+                                                            .collection(
+                                                                'review')
+                                                            .snapshots(),
+                                                        builder: (context,
+                                                            AsyncSnapshot
+                                                                snapshot) {
+                                                          if (snapshot
+                                                              .hasData) {
+                                                            List data = snapshot
+                                                                .data
+                                                                .docs as List;
+                                                            return Column(
+                                                              children:
+                                                                  List.generate(
+                                                                      data
+                                                                          .length,
+                                                                      (index) =>
+                                                                          ListTile(
+                                                                            onTap:
+                                                                                () {
+                                                                              Navigator.push(context, MaterialPageRoute(builder: (context) => CraftsManServices(deviceScreenType: DeviceScreenType.desktop, id: data[index]['id'])));
+                                                                            },
+                                                                            title:
+                                                                                Padding(
+                                                                              padding: const EdgeInsets.only(bottom: 8),
+                                                                              child: Text(
+                                                                                data[index]['name'],
+                                                                                style: const TextStyle(
+                                                                                  fontWeight: FontWeight.bold,
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                            leading:
+                                                                                const CircleAvatar(
+                                                                              child: Icon(Icons.person),
+                                                                            ),
+                                                                            subtitle:
+                                                                                Column(
+                                                                              children: [
+                                                                                Text(data[index]['rate'].toString()),
+                                                                                const SizedBox(
+                                                                                  height: 8,
+                                                                                ),
+                                                                                Text(data[index]['review']),
+                                                                              ],
+                                                                            ),
+                                                                          )),
+                                                            );
+                                                          } else {
+                                                            return const Center(
+                                                              child:
+                                                                  CircularProgressIndicator(),
+                                                            );
+                                                          }
+                                                        },
+                                                      ),
+                                                      actions: <Widget>[
+                                                        ElevatedButton(
+                                                            onPressed: () {
+                                                              Navigator.pop(
+                                                                  context);
+                                                            },
+                                                            child: const Text(
+                                                              'close',
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .white),
+                                                            ))
+                                                      ],
+                                                    );
+                                                  },
+                                                );
+                                              },
+                                              child: const Text(
+                                                'Report',
+                                                style: TextStyle(
+                                                    color: Colors.white),
                                               ),
                                             ),
-                                            trailing:  Text(craftmanServices[index]['time']),
                                             subtitle: Column(
                                               children: [
-                                                Text(craftmanServices[index]['des']),
+                                                Text(craftmanServices[index]
+                                                    ['des']),
                                                 const SizedBox(
                                                   height: 8,
                                                 ),
-                                                Text(''),
+                                                Text(craftmanServices[index]
+                                                    ['time']),
                                               ],
                                             ),
                                           ),
