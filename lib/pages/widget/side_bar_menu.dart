@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -7,6 +8,7 @@ import '../add_category/listofcategory.dart';
 import '../clients/clients.dart';
 import '../craftsman/craftsman.dart';
 import '../home_page.dart';
+import '../login/login.dart';
 
 class SideBar extends StatefulWidget {
   const SideBar({super.key});
@@ -93,11 +95,18 @@ class _SideBarState extends State<SideBar> {
             //   icon: "assets/menu_calendar.png",
             //   press: () {},
             // ),
-            // DrawerListTile(
-            //   title: "Settings",
-            //   icon: "assets/menu_settings.png",
-            //   press: () {},
-            // ),
+            DrawerListTile(
+              title: "Settings",
+              icon: "assets/menu_settings.png",
+              press: () async {
+                await FirebaseAuth.instance.signOut().then((value) {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginScreen()));
+                });
+              },
+            ),
             const Spacer(),
             Image.asset("assets/logo.png")
           ],
