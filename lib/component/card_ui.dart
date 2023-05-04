@@ -80,10 +80,10 @@ Widget buildTaskContent({Function()? onPressedMenu}) {
                       ),
                     ),
                     const SizedBox(width: 20.0 / 2),
-                    const SizedBox(
-                      width: 200,
-                      child: TaskProgress(data: dataTask),
-                    ),
+                    // const SizedBox(
+                    //   width: 200,
+                    //   child: TaskProgress(data: dataTask),
+                    // ),
                   ],
                 ),
                 const SizedBox(height: 20.0),

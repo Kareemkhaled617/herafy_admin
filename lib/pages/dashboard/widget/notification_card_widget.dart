@@ -8,39 +8,38 @@ class NotificationCardWidget extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           color: AppColor.yellow, borderRadius: BorderRadius.circular(20)),
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       child: Row(
         children: [
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text.rich(
-                TextSpan(
-                  style: TextStyle(fontSize: 16, color: AppColor.black),
-                  children: [
-                    TextSpan(text: "Good Morning "),
+              RichText(
+                text:  TextSpan(
+                  children: <TextSpan>[
                     TextSpan(
-                      text: "Ravi Patel!",
+                      text: DateTime.now().hour <= 12? 'Good Morning':'Good Evening',
+                      style:  TextStyle(
+                        height: 1.3,
+                        color: Theme.of(context).primaryColor,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 18,
+                      ),
+                    ),
+                    const TextSpan(
+                      text: 'Have a nice day.!',
                       style: TextStyle(
-                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 18,
                       ),
                     ),
                   ],
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                "Today you have 9 New Applications.\nAlso you need to hire 2 new UX Designers. 1\nReact Native Developer",
-                style: TextStyle(
-                  fontSize: 14,
-                  color: AppColor.black,
-                  height: 1.5,
-                ),
-              ),
-              SizedBox(
+
+              const SizedBox(
                 height: 10,
               ),
               Text(
@@ -54,7 +53,7 @@ class NotificationCardWidget extends StatelessWidget {
             ],
           ),
           if (MediaQuery.of(context).size.width >= 620) ...{
-            Spacer(),
+            const Spacer(),
             Image.asset(
               "assets/notification_image.png",
               height: 160,

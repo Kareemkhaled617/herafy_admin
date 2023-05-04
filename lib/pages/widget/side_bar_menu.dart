@@ -96,7 +96,7 @@ class _SideBarState extends State<SideBar> {
             //   press: () {},
             // ),
             DrawerListTile(
-              title: "Settings",
+              title: "LogOut",
               icon: "assets/menu_settings.png",
               press: () async {
                 await FirebaseAuth.instance.signOut().then((value) {
