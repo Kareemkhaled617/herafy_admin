@@ -7,9 +7,7 @@ import '../widget/side_bar_menu.dart';
 class Users extends StatelessWidget {
   final DeviceScreenType deviceScreenType;
 
-
-  const Users({Key? key, required this.deviceScreenType})
-      : super(key: key);
+  const Users({Key? key, required this.deviceScreenType}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -100,15 +98,15 @@ class Users extends StatelessWidget {
                                                       ),
                                                     ),
                                                   ),
-                                            trailing:
-                                                const Text(''),
+                                            trailing: const Text(''),
                                             subtitle: Column(
                                               children: [
                                                 Text(users[index]['email']),
                                                 const SizedBox(
                                                   height: 8,
                                                 ),
-                                                Text(users[index]['national_id']),
+                                                Text(users[index]
+                                                    ['national_id']),
                                               ],
                                             ),
                                           ),

@@ -28,7 +28,7 @@ class _DashboardState extends State<Dashboard> {
       ),
       child: Column(
         children: [
-          const HeaderWidget(),
+           const HeaderWidget(),
           Expanded(
             child: SingleChildScrollView(
               child: Row(
@@ -38,7 +38,7 @@ class _DashboardState extends State<Dashboard> {
                     flex: 5,
                     child: Column(
                       children: [
-                        NotificationCardWidget(),
+                        // NotificationCardWidget(),
                         const SizedBox(
                           height: 20,
                         ),
@@ -64,10 +64,6 @@ class _DashboardState extends State<Dashboard> {
                         child: Column(
                           children: [
                             CalendarWidget(),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            ProfileCardWidget(),
                           ],
                         ),
                       ),

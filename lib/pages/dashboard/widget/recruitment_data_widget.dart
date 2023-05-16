@@ -65,7 +65,6 @@ class _RecruitmentDataWidgetState extends State<RecruitmentDataWidget> {
                           tableHeader("type"),
                           tableHeader("price"),
                           tableHeader("isAccept"),
-                          if (!AppResponsive.isMobile(context)) tableHeader(""),
                         ],
                       ),
                       ...data.map(
@@ -149,33 +148,6 @@ class _RecruitmentDataWidgetState extends State<RecruitmentDataWidget> {
             ],
           ),
           // Menu icon
-          if (!AppResponsive.isMobile(context))
-            InkWell(
-              onTap: () {
-                // QuickAlert.show(
-                //   context: context,
-                //   type: QuickAlertType.success,
-                //   onCancelBtnTap: () {
-                //     delete(uid);
-                //     Navigator.push(
-                //         context,
-                //         MaterialPageRoute(
-                //             builder: (context) => const HomePage()));
-                //   },
-                //   onConfirmBtnTap: () {},
-                //   showCancelBtn: true,
-                //   cancelBtnText: 'Delete',
-                //   confirmBtnText: 'Update',
-                //   customAsset: 'assets/user1.jpg',
-                //   text: name,
-                // );
-              },
-              child: Image.asset(
-                "assets/more.png",
-                color: Colors.grey,
-                height: 30,
-              ),
-            )
         ]);
   }
 
