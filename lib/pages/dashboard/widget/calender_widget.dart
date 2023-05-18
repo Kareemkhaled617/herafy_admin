@@ -1,5 +1,4 @@
 import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -7,6 +6,8 @@ import 'package:table_calendar/table_calendar.dart';
 import '../../../common/app_colors.dart';
 
 class CalendarWidget extends StatefulWidget {
+  const CalendarWidget({super.key});
+
   @override
   _CalendarWidgetState createState() => _CalendarWidgetState();
 }

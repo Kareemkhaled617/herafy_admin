@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:quickalert/models/quickalert_type.dart';
-import 'package:quickalert/widgets/quickalert_dialog.dart';
 
 import '../../../common/app_colors.dart';
 import '../../../common/app_responsive.dart';
 import '../../../controllers/controller.dart';
-import '../../home_page.dart';
 
 class RecruitmentDataWidget extends StatefulWidget {
   const RecruitmentDataWidget({super.key});
@@ -62,7 +59,7 @@ class _RecruitmentDataWidgetState extends State<RecruitmentDataWidget> {
                           tableHeader("Name"),
                           if (!AppResponsive.isMobile(context))
                             tableHeader("craftsman"),
-                          tableHeader("type"),
+                          tableHeader("Category"),
                           tableHeader("price"),
                           tableHeader("isAccept"),
                         ],
@@ -72,9 +69,8 @@ class _RecruitmentDataWidgetState extends State<RecruitmentDataWidget> {
                           context,
                           name: element['name'] ?? '',
                           isAccept: element['isAccept'],
-                          color: element['isAccept']
-                              ? Colors.green
-                              : Colors.red,
+                          color:
+                              element['isAccept'] ? Colors.green : Colors.red,
                           image: element['image'] ?? '',
                           type: element['type'] ?? '',
                           uid: element['id'] ?? '',

@@ -38,16 +38,8 @@ class _DashboardState extends State<Dashboard> {
                     flex: 5,
                     child: Column(
                       children: [
-                        // NotificationCardWidget(),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        buildTaskContent(),
-                        const SizedBox(
-                          height: 20,
-                        ),
                         if (AppResponsive.isMobile(context)) ...{
-                          CalendarWidget(),
+                          const CalendarWidget(),
                           const SizedBox(
                             height: 20,
                           ),
@@ -62,8 +54,9 @@ class _DashboardState extends State<Dashboard> {
                       child: Container(
                         margin: const EdgeInsets.symmetric(horizontal: 10),
                         child: Column(
-                          children: [
-                            CalendarWidget(),
+                          children:  [
+                            const CalendarWidget(),
+                            buildTaskContent(),
                           ],
                         ),
                       ),
