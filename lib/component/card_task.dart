@@ -78,6 +78,54 @@ class CardTask extends StatelessWidget {
                     ),
                     const Spacer(flex: 2),
                     _doneButton(),
+                    ElevatedButton.icon(
+                      onPressed: () async {
+                        String docId = FirebaseFirestore.instance
+                            .collection('category')
+                            .doc(data['type'])
+                            .collection('services')
+                            .doc()
+                            .id;
+                        await FirebaseFirestore.instance
+                            .collection('allService')
+                            .doc(data['id'])
+                            .set(
+                          {
+                            'isAccept': false,
+                          },
+                          SetOptions(merge: true),
+                        );
+                        await FirebaseFirestore.instance
+                            .collection('category')
+                            .doc(data['type'])
+                            .collection('services')
+                            .doc(docId)
+                            .set({
+                          'image': data['image'],
+                          'isAccept': false,
+                          "name": data['name'],
+                          "des": data['des'],
+                          'type': data['type'],
+                          'craftsman': data['craftsman'],
+                          'price': data['price'],
+                          'servicesId': docId,
+                          'id': data['id'],
+                          'craftManId': data['uid'],
+                          'time': DateFormat('hh:mm a')
+                              .format(DateTime.now())
+                              .toString(),
+                          'date': DateFormat('yyyy-MM-dd')
+                              .format(DateTime.now())
+                              .toString(),
+                        });
+                      },
+                      style: ElevatedButton.styleFrom(
+                        primary: onPrimary,
+                        onPrimary: primary,
+                      ),
+                      icon: const Icon(Icons.cancel),
+                      label: const Text("Reject"),
+                    ),
                   ],
                 ),
               ),

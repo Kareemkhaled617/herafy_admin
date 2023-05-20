@@ -31,7 +31,7 @@ class Clients extends StatelessWidget {
               ),
               child: StreamBuilder(
                 stream:
-                    FirebaseFirestore.instance.collection('users').snapshots(),
+                FirebaseFirestore.instance.collection('users').snapshots(),
                 builder: (context, AsyncSnapshot snapshot) {
                   if (snapshot.hasData) {
                     List client = snapshot.data.docs as List;
@@ -65,92 +65,224 @@ class Clients extends StatelessWidget {
                                     child: Column(
                                       children: List.generate(
                                         client.length,
-                                        (index) => Container(
-                                          margin:
+                                            (index) =>
+                                            Container(
+                                              margin:
                                               const EdgeInsets.only(bottom: 20),
-                                          child: ListTile(
-                                            onTap: () {},
-                                            title: Padding(
-                                              padding: const EdgeInsets.only(
-                                                  bottom: 8),
-                                              child: Text(
-                                                client[index]['name'],
-                                                style: const TextStyle(
-                                                  fontWeight: FontWeight.bold,
+                                              child: ListTile(
+                                                onTap: () {},
+                                                title: Row(
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                      const EdgeInsets.only(
+                                                          bottom: 8),
+                                                      child: Text(
+                                                        client[index]['name'],
+                                                        style: const TextStyle(
+                                                          fontWeight:
+                                                          FontWeight.bold,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    const SizedBox(
+                                                      width: 20,
+                                                    ),
+                                                    Text(
+                                                      client[index]['cancel']
+                                                          .toString(),
+                                                      style: const TextStyle(
+                                                          fontWeight:
+                                                          FontWeight.w900,
+                                                          fontSize: 30,
+                                                          color: Colors
+                                                              .redAccent),
+                                                    ),
+                                                  ],
+                                                ),
+                                                leading: client[index]['image'] ==
+                                                    'null'
+                                                    ? const CircleAvatar(
+                                                  child: Icon(Icons.person),
+                                                )
+                                                    : Container(
+                                                  height: 50,
+                                                  width: 50,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                    BorderRadius.circular(
+                                                        10),
+                                                    image: DecorationImage(
+                                                      fit: BoxFit.cover,
+                                                      image: NetworkImage(
+                                                          client[index]
+                                                          ['image']),
+                                                    ),
+                                                  ),
+                                                ),
+                                                trailing: client[index]['isAccept']
+                                                    ? MaterialButton(
+                                                      color:
+                                                      Colors.blueAccent,
+                                                      onPressed: () async {
+                                                        await FirebaseFirestore
+                                                            .instance
+                                                            .collection(
+                                                            'users')
+                                                            .doc(client[index]
+                                                        ['id'])
+                                                            .set(
+                                                          {'isAccept': false},
+                                                          SetOptions(
+                                                              merge: true),
+                                                        );
+                                                      },
+                                                      child: const Text(
+                                                        'Block',
+                                                        style: TextStyle(
+                                                            color:
+                                                            Colors.white),
+                                                      ),
+                                                    )
+                                                    : MaterialButton(
+                                                  color: Colors.redAccent,
+                                                  onPressed: () async {
+                                                    await FirebaseFirestore
+                                                        .instance
+                                                        .collection('users')
+                                                        .doc(client[index]
+                                                    ['id'])
+                                                        .set(
+                                                      {'isAccept': true},
+                                                      SetOptions(merge: true),
+                                                    );
+                                                  },
+                                                  child: const Text(
+                                                    'UnBlock',
+                                                    style: TextStyle(
+                                                        color: Colors.white),
+                                                  ),
+                                                ),
+                                                subtitle: Column(
+                                                  children: [
+                                                    Text(
+                                                        client[index]['email']),
+                                                    const SizedBox(
+                                                      height: 8,
+                                                    ),
+                                                    Text(client[index]
+                                                    ['national_id']),
+                                                    MaterialButton(
+                                                      color:
+                                                      Colors.blueAccent,
+                                                      onPressed: () async {
+                                                        showDialog(
+                                                          context: context,
+                                                          builder:
+                                                              (BuildContext
+                                                          context) {
+                                                            return AlertDialog(
+                                                              title: const Text(
+                                                                  "Herafy!!"),
+                                                              content:
+                                                              StreamBuilder(
+                                                                stream: FirebaseFirestore
+                                                                    .instance
+                                                                    .collection(
+                                                                    'users')
+                                                                    .doc(client[
+                                                                index]
+                                                                [
+                                                                'id'])
+                                                                    .collection(
+                                                                    'cancel')
+                                                                    .snapshots(),
+                                                                builder: (
+                                                                    context,
+                                                                    AsyncSnapshot
+                                                                    snapshot) {
+                                                                  if (snapshot
+                                                                      .hasData) {
+                                                                    List
+                                                                    data =
+                                                                    snapshot
+                                                                        .data
+                                                                        .docs as List;
+                                                                    return Column(
+                                                                      children: List
+                                                                          .generate(
+                                                                          data
+                                                                              .length,
+                                                                              (
+                                                                              index) =>
+                                                                              ListTile(
+                                                                                title: Padding(
+                                                                                  padding: const EdgeInsets
+                                                                                      .only(
+                                                                                      bottom: 8),
+                                                                                  child: Text(
+                                                                                    data[index]['name'],
+                                                                                    style: const TextStyle(
+                                                                                      fontWeight: FontWeight
+                                                                                          .bold,
+                                                                                    ),
+                                                                                  ),
+                                                                                ),
+                                                                                subtitle: Column(
+                                                                                  children: [
+                                                                                    Text(
+                                                                                        data[index]['date']
+                                                                                            .toString()),
+                                                                                    const SizedBox(
+                                                                                      height: 8,
+                                                                                    ),
+
+                                                                                  ],
+                                                                                ),
+
+                                                                              )),
+                                                                    );
+                                                                  } else {
+                                                                    return const Center(
+                                                                      child:
+                                                                      CircularProgressIndicator(),
+                                                                    );
+                                                                  }
+                                                                },
+                                                              ),
+                                                              actions: <
+                                                                  Widget>[
+                                                                ElevatedButton(
+                                                                    onPressed:
+                                                                        () {
+                                                                      Navigator
+                                                                          .pop(
+                                                                          context);
+                                                                    },
+                                                                    child:
+                                                                    const Text(
+                                                                      'close',
+                                                                      style: TextStyle(
+                                                                          color:
+                                                                          Colors
+                                                                              .white),
+                                                                    ))
+                                                              ],
+                                                            );
+                                                          },
+                                                        );
+                                                      },
+                                                      child: const Text(
+                                                        'Order Canceled',
+                                                        style: TextStyle(
+                                                            color:
+                                                            Colors.white),
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
                                               ),
                                             ),
-                                            leading: client[index]['image'] ==
-                                                    'null'
-                                                ? const CircleAvatar(
-                                                    child: Icon(Icons.person),
-                                                  )
-                                                : Container(
-                                                    height: 50,
-                                                    width: 50,
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                      image: DecorationImage(
-                                                        fit: BoxFit.cover,
-                                                        image: NetworkImage(
-                                                            client[index]
-                                                                ['image']),
-                                                      ),
-                                                    ),
-                                                  ),
-                                            trailing: client[index]['isAccept']
-                                                ? MaterialButton(
-                                                    color: Colors.blueAccent,
-                                                    onPressed: () async {
-                                                      await FirebaseFirestore
-                                                          .instance
-                                                          .collection('users')
-                                                          .doc(client[index]
-                                                              ['id'])
-                                                          .set(
-                                                        {'isAccept': false},
-                                                        SetOptions(merge: true),
-                                                      );
-                                                    },
-                                                    child: const Text(
-                                                      'Block',
-                                                      style: TextStyle(
-                                                          color: Colors.white),
-                                                    ),
-                                                  )
-                                                : MaterialButton(
-                                                    color: Colors.redAccent,
-                                                    onPressed: () async {
-                                                      await FirebaseFirestore
-                                                          .instance
-                                                          .collection('users')
-                                                          .doc(client[index]
-                                                              ['id'])
-                                                          .set(
-                                                        {'isAccept': true},
-                                                        SetOptions(merge: true),
-                                                      );
-                                                    },
-                                                    child: const Text(
-                                                      'UnBlock',
-                                                      style: TextStyle(
-                                                          color: Colors.white),
-                                                    ),
-                                                  ),
-                                            subtitle: Column(
-                                              children: [
-                                                Text(client[index]['email']),
-                                                const SizedBox(
-                                                  height: 8,
-                                                ),
-                                                Text(client[index]
-                                                    ['national_id']),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
                                       ),
                                     ),
                                   ),
@@ -166,7 +298,10 @@ class Clients extends StatelessWidget {
                               Text(
                                 "Herafy For All Services",
                                 style: TextStyle(
-                                    color: Theme.of(context).iconTheme.color),
+                                    color: Theme
+                                        .of(context)
+                                        .iconTheme
+                                        .color),
                               )
                             ],
                           )
