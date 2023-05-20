@@ -67,10 +67,11 @@ class CraftsMan extends StatelessWidget {
                                     child: Column(
                                       children: List.generate(
                                         craftman.length,
-                                        (index) => MemberCard(
-                                          member: craftman[index],
-                                          deviceScreenType: deviceScreenType,
-                                        ),
+                                            (index) =>
+                                            MemberCard(
+                                              member: craftman[index],
+                                              deviceScreenType: deviceScreenType,
+                                            ),
                                       ),
                                     ),
                                   ),
@@ -86,7 +87,10 @@ class CraftsMan extends StatelessWidget {
                               Text(
                                 "Herafy For All Services",
                                 style: TextStyle(
-                                    color: Theme.of(context).iconTheme.color),
+                                    color: Theme
+                                        .of(context)
+                                        .iconTheme
+                                        .color),
                               )
                             ],
                           )

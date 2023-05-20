@@ -30,14 +30,28 @@ class MemberCard extends StatelessWidget {
                       deviceScreenType: DeviceScreenType.desktop,
                       id: member['id'])));
         },
-        title: Padding(
-          padding: const EdgeInsets.only(bottom: 8),
-          child: Text(
-            member['name'],
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
+        title: Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Text(
+                member['name'],
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
-          ),
+            SizedBox(
+              width: 20,
+            ),
+            Text(
+              member['count'].toString(),
+              style: const TextStyle(
+                  fontWeight: FontWeight.w900,
+                  fontSize: 30,
+                  color: Colors.redAccent),
+            ),
+          ],
         ),
         trailing: member['accept']
             ? MaterialButton(
