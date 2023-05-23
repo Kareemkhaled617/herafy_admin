@@ -16,8 +16,8 @@ class LoginScreen extends StatelessWidget {
     String email = '';
     String? pass = '';
     return FlutterLogin(
-      title: 'Herafy',
       logo: 'assets/logo.png',
+      hideForgotPasswordButton: true,
       onLogin: (lData) {
         login1(lData.name, lData.password, context: context);
         return null;
@@ -95,9 +95,7 @@ class LoginScreen extends StatelessWidget {
           // shape: ContinuousRectangleBorder(borderRadius: BorderRadius.circular(55.0)),
         ),
       ),
-      onRecoverPassword: (String) {
-
-      },
+      onRecoverPassword: (String) {},
     );
   }
 }

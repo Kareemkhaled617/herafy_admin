@@ -91,7 +91,7 @@ class CardTask extends StatelessWidget {
                             .doc(data['id'])
                             .set(
                           {
-                            'isAccept': false,
+                            'isAccept': 2,
                           },
                           SetOptions(merge: true),
                         );
@@ -102,7 +102,7 @@ class CardTask extends StatelessWidget {
                             .doc(docId)
                             .set({
                           'image': data['image'],
-                          'isAccept': false,
+                          'isAccept': 2,
                           "name": data['name'],
                           "des": data['des'],
                           'type': data['type'],
@@ -200,7 +200,7 @@ class CardTask extends StatelessWidget {
             .doc(data['id'])
             .set(
           {
-            'isAccept': true,
+            'isAccept': 1,
           },
           SetOptions(merge: true),
         );
@@ -211,7 +211,7 @@ class CardTask extends StatelessWidget {
             .doc(docId)
             .set({
           'image': data['image'],
-          'isAccept': false,
+          'isAccept': 1,
           "name": data['name'],
           "des": data['des'],
           'type': data['type'],

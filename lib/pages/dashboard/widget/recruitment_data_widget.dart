@@ -69,8 +69,11 @@ class _RecruitmentDataWidgetState extends State<RecruitmentDataWidget> {
                           context,
                           name: element['name'] ?? '',
                           isAccept: element['isAccept'],
-                          color:
-                              element['isAccept'] ? Colors.green : Colors.red,
+                          color: element['isAccept'] == 0
+                              ? Colors.blueAccent
+                              : element['isAccept'] == 1
+                                  ? Colors.green
+                                  : Colors.red,
                           image: element['image'] ?? '',
                           type: element['type'] ?? '',
                           uid: element['id'] ?? '',
@@ -140,7 +143,11 @@ class _RecruitmentDataWidgetState extends State<RecruitmentDataWidget> {
               const SizedBox(
                 width: 10,
               ),
-              Text(isAccept.toString()),
+              Text(isAccept == 0
+                  ? 'Waiting'
+                  : isAccept == 1
+                      ? 'Accept'
+                      : 'Reject'),
             ],
           ),
           // Menu icon

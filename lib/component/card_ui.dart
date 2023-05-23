@@ -1,18 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import 'card_task.dart';
-import 'header_text.dart';
 import 'task_in_progress.dart';
-import 'task_progress.dart';
-
-
 
 Widget buildTaskContent({Function()? onPressedMenu}) {
   return StreamBuilder(
       stream: FirebaseFirestore.instance
           .collection('allService')
-          .where('isAccept', isEqualTo: false)
+          .where('isAccept', isEqualTo: 0)
           .snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {

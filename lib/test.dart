@@ -9,12 +9,11 @@ class MemberCard extends StatelessWidget {
   final Widget? trailing;
   final DeviceScreenType deviceScreenType;
 
-  const MemberCard(
-      {Key? key,
-      required this.deviceScreenType,
-      this.showJob = false,
-      required this.member,
-      this.trailing})
+  const MemberCard({Key? key,
+    required this.deviceScreenType,
+    this.showJob = false,
+    required this.member,
+    this.trailing})
       : super(key: key);
 
   @override
@@ -26,9 +25,10 @@ class MemberCard extends StatelessWidget {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => CraftsManServices(
-                      deviceScreenType: DeviceScreenType.desktop,
-                      id: member['id'])));
+                  builder: (context) =>
+                      CraftsManServices(
+                          deviceScreenType: DeviceScreenType.desktop,
+                          id: member['id'])));
         },
         title: Row(
           children: [
@@ -41,7 +41,7 @@ class MemberCard extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 20,
             ),
             Text(
@@ -55,52 +55,52 @@ class MemberCard extends StatelessWidget {
         ),
         trailing: member['accept']
             ? MaterialButton(
-                color: Colors.blueAccent,
-                onPressed: () async {
-                  await FirebaseFirestore.instance
-                      .collection('craftsman')
-                      .doc(member['id'])
-                      .set(
-                    {'accept': false},
-                    SetOptions(merge: true),
-                  );
-                },
-                child: const Text(
-                  'Restrict',
-                  style: TextStyle(color: Colors.white),
-                ),
-              )
+          color: Colors.blueAccent,
+          onPressed: () async {
+            await FirebaseFirestore.instance
+                .collection('craftsman')
+                .doc(member['id'])
+                .set(
+              {'accept': false},
+              SetOptions(merge: true),
+            );
+          },
+          child: const Text(
+            'Restrict',
+            style: TextStyle(color: Colors.white),
+          ),
+        )
             : MaterialButton(
-                color: Colors.redAccent,
-                onPressed: () async {
-                  await FirebaseFirestore.instance
-                      .collection('craftsman')
-                      .doc(member['id'])
-                      .set(
-                    {'accept': true},
-                    SetOptions(merge: true),
-                  );
-                },
-                child: const Text(
-                  'UnRestrict',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
+          color: Colors.redAccent,
+          onPressed: () async {
+            await FirebaseFirestore.instance
+                .collection('craftsman')
+                .doc(member['id'])
+                .set(
+              {'accept': true},
+              SetOptions(merge: true),
+            );
+          },
+          child: const Text(
+            'UnRestrict',
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
         leading: member['image'] == 'null'
             ? const CircleAvatar(
-                child: Icon(Icons.person),
-              )
+          child: Icon(Icons.person),
+        )
             : Container(
-                height: 50,
-                width: 50,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: NetworkImage(member['image']),
-                  ),
-                ),
-              ),
+          height: 50,
+          width: 50,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            image: DecorationImage(
+              fit: BoxFit.cover,
+              image: NetworkImage(member['image']),
+            ),
+          ),
+        ),
         subtitle: Column(
           children: [
             Text(member['email']),
@@ -150,8 +150,8 @@ class MessageBox extends StatelessWidget {
                   const SizedBox(height: 20),
                   const Text(
                     "We can now freely collaborate regarding our current demand\n"
-                    "Any question about the documentaion or the project\n"
-                    "please feel free to get in contact us\n",
+                        "Any question about the documentaion or the project\n"
+                        "please feel free to get in contact us\n",
                     style: TextStyle(
                         color: Color(0xff78A1C6),
                         fontSize: 17,
@@ -164,7 +164,10 @@ class MessageBox extends StatelessWidget {
                       "Tuesdy, April 7th at 1:21PM",
                       style: TextStyle(
                         fontWeight: FontWeight.w300,
-                        color: Theme.of(context).iconTheme.color,
+                        color: Theme
+                            .of(context)
+                            .iconTheme
+                            .color,
                       ),
                     ),
                   ),
@@ -233,7 +236,9 @@ class MessageBox extends StatelessWidget {
                 IconButton(
                   icon: Icon(
                     Icons.send_rounded,
-                    color: Theme.of(context).primaryColor,
+                    color: Theme
+                        .of(context)
+                        .primaryColor,
                   ),
                   onPressed: () {},
                 ),
