@@ -111,6 +111,7 @@ class CardTask extends StatelessWidget {
                           'servicesId': docId,
                           'id': data['id'],
                           'craftManId': data['uid'],
+                          'uid': data['uid'],
                           'time': DateFormat('hh:mm a')
                               .format(DateTime.now())
                               .toString(),
@@ -220,6 +221,7 @@ class CardTask extends StatelessWidget {
           'servicesId': docId,
           'id': data['id'],
           'craftManId': data['uid'],
+          'uid': data['uid'],
           'time': DateFormat('hh:mm a').format(DateTime.now()).toString(),
           'date': DateFormat('yyyy-MM-dd').format(DateTime.now()).toString(),
         });
