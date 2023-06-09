@@ -56,9 +56,6 @@ class ListOfCategory extends StatelessWidget {
                                         ),
                                       ),
                                       const Spacer(),
-                                      IconButton(
-                                          icon: const Icon(Icons.search),
-                                          onPressed: () {}),
                                       const SizedBox(width: 20),
                                       IconButton(
                                         icon: Icon(
