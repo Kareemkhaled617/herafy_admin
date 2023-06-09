@@ -96,6 +96,17 @@ class CardTask extends StatelessWidget {
                           SetOptions(merge: true),
                         );
                         await FirebaseFirestore.instance
+                            .collection('craftsman')
+                            .doc(data['uid'])
+                            .collection('services')
+                            .doc(data['id'])
+                            .set(
+                          {
+                            'isAccept': 2,
+                          },
+                          SetOptions(merge: true),
+                        );
+                        await FirebaseFirestore.instance
                             .collection('category')
                             .doc(data['type'])
                             .collection('services')
@@ -205,6 +216,19 @@ class CardTask extends StatelessWidget {
           },
           SetOptions(merge: true),
         );
+
+        await FirebaseFirestore.instance
+            .collection('craftsman')
+            .doc(data['uid'])
+            .collection('services')
+            .doc(data['id'])
+            .set(
+          {
+            'isAccept': 1,
+          },
+          SetOptions(merge: true),
+        );
+
         await FirebaseFirestore.instance
             .collection('category')
             .doc(data['type'])
