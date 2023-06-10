@@ -56,7 +56,19 @@ class CardTask extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           _buildLabel(),
-                          const SizedBox(height: 20),
+                          const SizedBox(height: 10),
+                          Text(
+                            data['des'],
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w800,
+                              color: onPrimary,
+                              letterSpacing: 1,
+                            ),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          const SizedBox(height: 10),
                           _buildJobdesk(),
                         ],
                       ),

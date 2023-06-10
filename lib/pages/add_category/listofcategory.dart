@@ -120,7 +120,8 @@ class ListOfCategory extends StatelessWidget {
                                               ),
                                             ),
                                           ),
-                                          trailing:  Text(category[index]['time'].toString()),
+                                          trailing: Text(category[index]['time']
+                                              .toString()),
                                           subtitle: const Text(''),
                                         ),
                                       ),
